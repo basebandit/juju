@@ -46,11 +46,6 @@ func FormatTabular(writer io.Writer, forceColor bool, value interface{}) error {
 		return errors.Errorf("expected value of type %T, got %T", fs, value)
 	}
 
-	// color mode enabled by default if on tty, overrides --color=false
-	if isTerminal(writer) {
-		forceColor = true
-	}
-
 	// overrides the --color=true
 	if _, ok := os.LookupEnv("NO_COLOR"); ok {
 		forceColor = false
